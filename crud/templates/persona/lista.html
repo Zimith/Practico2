@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    {% if personas %}
+        <ul>
+            
+            {% for persona in personas %}
+                <li>{{ persona }}</li>
+            {% endfor %}
+                
+        </ul>
+    {% endif %}
+        
+{% endblock content %}
+
+        

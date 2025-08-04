@@ -14,5 +14,5 @@ class Persona(models.Model):
 
     def __str__(self):
         """Unicode representation of MODELNAME."""
-        return f"{self.apellido} - {self.nombre} {self.edad}"
+        return f"Nombre Completo: {self.nombre} {self.apellido} - Edad: {self.edad}"
 
