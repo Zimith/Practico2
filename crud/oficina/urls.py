@@ -9,4 +9,24 @@ urlpatterns = [
         OficinaListView.as_view(),
         name='lista'
     ),
+    path(
+        'detalle/<int:pk>/',
+        OficinaDetailView.as_view(),
+        name='detalle'
+    ),
+    path(
+        'crear/',
+        OficinaCreateView.as_view(),
+        name='crear'
+    ),
+    path(
+        'actualizar/<int:pk>/',
+        OficinaUpdateView.as_view(),
+        name='actualizar'
+    ),
+    path(
+        'eliminar/<int:pk>/',
+        OficinaDeleteView.as_view(),
+        name='eliminar'
+    ),
 ]

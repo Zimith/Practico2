@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Eliminar Oficina</h1>
+    <p>¿Estás seguro de que deseas eliminar la oficina "{{ object_name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+    </form>
+    <a href="{% url 'oficina:lista' %}">Cancelar</a>
+{% endblock content %}
