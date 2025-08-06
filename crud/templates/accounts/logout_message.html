@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <form method="post" action="{% url 'accounts:logout' %}">  #Esto me manda al login, el profe puso la lista
+        #tambien puede ser esa opcion. Veo despues que hago
+        {% csrf_token %}
+        <h2>{{ title }}</h2>
+        {{ form.as_p }}
+        <h2>Se quiere desloguear?</h2>
+        <button type="submit">Logout</button>
+        <a href="{% url 'persona:lista' %}">Cancelar</a>
+    </form>
+{% endblock content %}

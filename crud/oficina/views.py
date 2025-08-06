@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Oficina
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class OficinaListView(ListView):
@@ -14,20 +15,20 @@ class OficinaDetailView(DetailView):
     template_name = "oficina/detalle.html"
     context_object_name = "oficina"
 
-class OficinaCreateView(CreateView):
+class OficinaCreateView(LoginRequiredMixin, CreateView):
     model = Oficina
     template_name = "oficina/crear.html"
     fields = ['nombre', 'nombre_corto']
     success_url = reverse_lazy('oficina:lista')
 
-class OficinaUpdateView(UpdateView):
+class OficinaUpdateView(LoginRequiredMixin, UpdateView):
     model = Oficina
     template_name = "oficina/crear.html"
     fields = ['nombre', 'nombre_corto']
     success_url = reverse_lazy('oficina:lista')
 
 
-class OficinaDeleteView(DeleteView):
+class OficinaDeleteView(LoginRequiredMixin, DeleteView):
     model = Oficina
     template_name = "oficina/eliminar.html"
     context_object_name = "oficina"
