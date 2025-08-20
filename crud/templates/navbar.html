@@ -33,8 +33,12 @@
 
       <!-- RIGHT: Search y Usuario -->
       <div class="d-flex align-items-center ms-auto">
-        <form class="d-flex me-2" role="search" action="{% url 'persona:buscar' %}" method="get">
-          <input class="form-control me-2" type="search" placeholder="Buscar persona" aria-label="Search" name="q" />
+        <form class="d-flex me-2" role="search" method="get" action="{% url 'persona:buscar' %}">
+          <select class="form-select me-2" name="tipo" style="max-width: 120px;">
+            <option value="persona" {% if request.GET.tipo == "persona" or not request.GET.tipo %}selected{% endif %}>Personas</option>
+            <option value="oficina" {% if request.GET.tipo == "oficina" %}selected{% endif %}>Oficinas</option>
+          </select>
+          <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="q" value="{{ request.GET.q|default_if_none:'' }}" />
           <button class="btn btn-outline-light" type="submit">Buscar</button>
         </form>
 

@@ -29,4 +29,9 @@ urlpatterns = [
         OficinaDeleteView.as_view(),
         name='eliminar'
     ),
+    path(
+        'buscar/',
+        OficinaSearchView.as_view(),
+        name='buscar'
+    ),
 ]

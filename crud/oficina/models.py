@@ -9,8 +9,10 @@ def Validacion_nombre_corto(value):
 
 class Oficina(models.Model):
     nombre = models.CharField(max_length=50,unique=True)
-    nombre_corto = models.CharField(max_length=10,unique=True, help_text="Nombre corto de la oficina (ADM, JAS,MARK, etc)")
-    validators = [Validacion_nombre_corto]
+    nombre_corto = models.CharField(max_length=10,unique=True,
+     help_text="Nombre corto de la oficina (ADM, JAS,MARK, etc)"
+    ,validators = [Validacion_nombre_corto])
+    
 
     class Meta:
         

@@ -9,6 +9,7 @@ class OficinaListView(ListView):
     model = Oficina
     template_name = "oficina/lista.html"
     context_object_name = "oficinas"
+    paginate_by = 10
 
 class OficinaDetailView(DetailView):
     model = Oficina
@@ -37,4 +38,22 @@ class OficinaDeleteView(LoginRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['object_name'] = self.object.nombre
+        return context
+
+
+class OficinaSearchView(ListView):
+    model = Oficina
+    template_name = "oficina/buscar.html"
+    context_object_name = "oficinas"
+    paginate_by = 10
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            return Oficina.objects.filter(nombre__icontains=query) | Oficina.objects.filter(nombre_corto__icontains=query)
+        return Oficina.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = self.request.GET.get('q')
         return context

@@ -20,7 +20,13 @@
         <td>{{ persona.apellido }}</td>
         <td>{{ persona.nombre }}</td>
         <td>{{ persona.edad }}</td>
-        <td>{{ persona.oficina }}</td>
+        <td>
+            {% if persona.oficina %}
+                {{ persona.oficina.nombre_corto|slice:":10" }}
+            {% else %}
+                Sin Oficina
+            {% endif %}
+        </td>
         <td>
           <a href="{% url 'persona:detalle' persona.pk %}" class="btn btn-info btn-sm">Ver</a>
           <a href="{% url 'persona:actualizar' persona.pk %}" class="btn btn-warning btn-sm">Modificar</a>
