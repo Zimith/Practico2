@@ -18,13 +18,13 @@ class PersonaDetailView(DetailView):
 class PersonaCreateView(LoginRequiredMixin, CreateView):
     model = Persona
     template_name = "persona/crear.html"
-    fields = ['nombre', 'apellido', 'edad']
+    fields = ['nombre', 'apellido', 'edad', 'oficina']
     success_url = reverse_lazy('persona:lista')
 
 class PersonaUpdateView(LoginRequiredMixin, UpdateView):
     model = Persona
     template_name = "persona/crear.html"
-    fields = ['nombre', 'apellido', 'edad']
+    fields = ['nombre', 'apellido', 'edad', 'oficina']
     success_url = reverse_lazy('persona:lista')
 
 class PersonaDeleteView(LoginRequiredMixin, DeleteView):

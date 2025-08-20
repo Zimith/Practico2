@@ -6,7 +6,7 @@ class Persona(models.Model):
     apellido = models.CharField(verbose_name="apellido", max_length=50)
     nombre = models.CharField(verbose_name="nombre", max_length=50)
     edad = models.IntegerField(verbose_name="edad")
-    oficina = models.ForeignKey(Oficina, on_delete=models.PROTECT, null=True, blank=True)
+    oficina = models.ForeignKey(Oficina, on_delete=models.PROTECT, related_name="personas", null=True, blank=True)
 
     class Meta:
         """Meta definition for MODELNAME."""
