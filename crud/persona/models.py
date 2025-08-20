@@ -1,10 +1,12 @@
 from django.db import models
+from oficina.models import Oficina
 
 class Persona(models.Model):
     """Model definition for MODELNAME."""
     apellido = models.CharField(verbose_name="apellido", max_length=50)
     nombre = models.CharField(verbose_name="nombre", max_length=50)
     edad = models.IntegerField(verbose_name="edad")
+    oficina = models.ForeignKey(Oficina, on_delete=models.PROTECT, null=True, blank=True)
 
     class Meta:
         """Meta definition for MODELNAME."""
