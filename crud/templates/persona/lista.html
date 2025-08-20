@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
-    {% if personas %}
-        <ul>
-            <h1>Lista de Personas</h1>
-            {% for persona in personas %}
-                <li>{{ persona }}</li>
-            {% endfor %}
-                
-        </ul>
-        {% include 'paginator.html' %}
-    {% endif %}
+    <h1>Lista de Personas</h1>
+    <ul>
+      {% for persona in personas %}
+        <li>
+          {{ persona }}
+          {% if persona.pk %}
+            <a href="{% url 'persona:detalle' persona.pk %}" class="btn btn-info btn-sm">Ver</a>
+            <a href="{% url 'persona:actualizar' persona.pk %}" class="btn btn-warning btn-sm">Modificar</a>
+            <a href="{% url 'persona:eliminar' persona.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
         
 {% endblock content %}
 
-        

@@ -4,5 +4,14 @@
     <p><strong>Nombre:</strong> {{ oficina.nombre }}</p>
     <p><strong>Nombre Corto:</strong> {{ oficina.nombre_corto }}</p>
 
+    <h2>Personas en esta oficina:</h2>
+    <ul>
+      {% for persona in oficina.personas.all %}
+        <li>{{ persona }}</li>
+      {% empty %}
+        <li>No hay personas en esta oficina.</li>
+      {% endfor %}
+    </ul>
+
     <a href="{% url 'oficina:lista' %}">Volver a la lista</a>
 {% endblock content %}
