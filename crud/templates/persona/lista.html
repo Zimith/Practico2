@@ -1,19 +1,36 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Lista de Personas</h1>
-    <ul>
-      {% for persona in personas %}
-        <li>
-          {{ persona }}
-          {% if persona.pk %}
-            <a href="{% url 'persona:detalle' persona.pk %}" class="btn btn-info btn-sm">Ver</a>
-            <a href="{% url 'persona:actualizar' persona.pk %}" class="btn btn-warning btn-sm">Modificar</a>
-            <a href="{% url 'persona:eliminar' persona.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-        
+<h1>Lista de Personas</h1>
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Oficina</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for persona in personas %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ persona.apellido }}</td>
+        <td>{{ persona.nombre }}</td>
+        <td>{{ persona.edad }}</td>
+        <td>{{ persona.oficina }}</td>
+        <td>
+          <a href="{% url 'persona:detalle' persona.pk %}" class="btn btn-info btn-sm">Ver</a>
+          <a href="{% url 'persona:actualizar' persona.pk %}" class="btn btn-warning btn-sm">Modificar</a>
+          <a href="{% url 'persona:eliminar' persona.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="pagination">
+  {% include 'paginator.html' %}
+</div>
 {% endblock content %}
-

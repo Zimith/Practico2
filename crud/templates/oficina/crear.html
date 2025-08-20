@@ -1,11 +1,23 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>Crear Oficina o Editar Oficina</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
-    </form>
-    <a href="{% url 'oficina:lista' %}">Volver a la lista</a>
+<form method="post">
+    {% csrf_token %}
+    <h2>
+        {% if form.instance.pk %}
+            Modificar Oficina
+        {% else %}
+            Crear Oficina
+        {% endif %}
+    </h2>
+
+    {{ form|crispy }}
+
+    <button type="submit" class="btn btn-primary">
+        {% if form.instance.pk %}Guardar Cambios{% else %}Crear{% endif %}
+    </button>
+</form>
+
+<a href="{% url 'oficina:lista' %}" class="btn btn-secondary mt-3">Volver a la lista</a>
 {% endblock content %}
