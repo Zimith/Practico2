@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-
 {% block content %}
-    <form method="post" action="{% url 'account_logout' %}"> 
-        {% csrf_token %}
-        <h2>{{ title }}</h2>
-        <h2>¿Estás seguro de que quieres cerrar sesión?</h2>
-        <button type="submit">Si</button>
-        <a href="{% url 'persona:lista' %}">Cancelar</a>
-    </form>
+<div class="container mt-5">
+    <div class="card shadow border-danger mx-auto" style="max-width: 400px;">
+        <div class="card-body text-center">
+            <h2 class="card-title text-danger mb-4">Cerrar sesión</h2>
+            <p class="mb-4">¿Estás seguro de que quieres cerrar sesión?</p>
+            <form method="post" action="{% url 'account_logout' %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger me-2">Sí, cerrar sesión</button>
+            </form>
+            <a href="{% url 'persona:lista' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </div>
+</div>
 {% endblock content %}

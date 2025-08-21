@@ -2,6 +2,9 @@
 
 {% block content %}
     <h1>Lista de Oficinas</h1>
+    <p class="mb-2 text-muted">
+        Mostrando {{ page_obj.paginator.count }} oficinas en total.
+    </p>
     <table class="table table-striped">
       <thead class="table-dark">
         <tr>
@@ -14,7 +17,7 @@
       <tbody>
         {% for oficina in oficinas %}
           <tr>
-            <th scope="row">{{ forloop.counter }}</th>
+            <th scope="row">{{ forloop.counter0|add:page_obj.start_index }}</th>
             <td>{{ oficina.nombre }}</td>
             <td>{{ oficina.nombre_corto }}</td>
             <td>

@@ -2,6 +2,9 @@
 
 {% block content %}
 <h1>Lista de Personas</h1>
+<p class="mb-2 text-muted">
+    {{ page_obj.paginator.count }} personas en total.
+</p>
 <table class="table table-striped">
   <thead class="table-dark">
     <tr>
@@ -16,7 +19,7 @@
   <tbody>
     {% for persona in personas %}
       <tr>
-        <th scope="row">{{ forloop.counter }}</th>
+        <th scope="row">{{ forloop.counter0|add:page_obj.start_index }}</th>
         <td>{{ persona.apellido }}</td>
         <td>{{ persona.nombre }}</td>
         <td>{{ persona.edad }}</td>

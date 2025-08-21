@@ -1,10 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Detalle de Persona</h1>
-    <p><strong>Nombre:</strong> {{ persona.nombre }}</p>
-    <p><strong>Apellido:</strong> {{ persona.apellido }}</p>
-    <p><strong>Edad:</strong> {{ persona.edad }}</p>
-    <p><strong>Oficina:</strong> {{ persona.oficina }}</p>
 
-    <a href="{% url 'persona:lista' %}">Volver a la lista</a>
+<h1>Detalle de Persona</h1>
+<table class="table">
+  <tr>
+    <th>Nombre</th>
+    <td>{{ persona.nombre }}</td>
+  </tr>
+  <tr>
+    <th>Apellido</th>
+    <td>{{ persona.apellido }}</td>
+  </tr>
+  <tr>
+    <th>Edad</th>
+    <td>{{ persona.edad }}</td>
+  </tr>
+  <tr>
+    <th>Oficina</th>
+    <td>
+      {% if persona.oficina %}
+        {{ persona.oficina.nombre_corto|slice:":10" }}
+      {% else %}
+        <span class="text-muted">Sin oficina</span>
+      {% endif %}
+    </td>
+  </tr>
+</table>
+
+<a href="{% url 'persona:lista' %}" class="btn btn-outline-primary">Volver a la lista</a>
 {% endblock content %}

@@ -17,9 +17,11 @@
     <button type="submit" class="btn btn-primary">
         {% if form.instance.pk %}Guardar Cambios{% else %}Crear{% endif %}
     </button>
-    <button type="submit" name="action" value="save_and_add_another" class="btn btn-secondary">Guardar y agregar otra</button>
-    
+    {% if not form.instance.pk %}
+    <button type="submit" name="action" value="save_and_add_another" 
+    class="btn btn-secondary">Guardar y agregar otra</button>
+    {% endif %}
 </form>
 
-<a href="{% url 'oficina:lista' %}" class="btn btn-secondary mt-3">Volver a la lista</a>
+<a href="{% url 'oficina:lista' %}" class="btn btn-outline-primary" style="margin-top: 0.5rem;">Volver a la lista</a>
 {% endblock content %}

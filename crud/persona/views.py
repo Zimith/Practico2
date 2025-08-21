@@ -54,10 +54,11 @@ class PersonaSearchView(ListView):
     context_object_name = "personas"
     paginate_by = 10
 
+
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
-            return Persona.objects.filter(nombre__icontains=query)
+            return Persona.objects.filter(Q(nombre__icontains=query) | Q(apellido__icontains=query))
         return Persona.objects.none()
 
     def context_data(self, **kwargs):

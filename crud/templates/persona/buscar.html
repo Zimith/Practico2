@@ -40,7 +40,9 @@
 <div class="pagination">
     {% include 'paginator.html' %}
 </div>
+<a href="{% url 'persona:lista' %}" class="btn btn-outline-primary mt-3">Volver a la lista</a>
 {% else %}
     <div class="alert alert-warning">No se encontraron resultados.</div>
+    <a href="{% url 'persona:lista' %}" class="btn btn-outline-primary mt-3">Volver a la lista</a>
 {% endif %}
 {% endblock content %}
