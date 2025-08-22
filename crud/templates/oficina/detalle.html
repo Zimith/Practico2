@@ -9,37 +9,41 @@
     </div>
 
     <h2 class="mb-3">Personas en esta oficina</h2>
-    <table class="table table-striped">
-      <thead class="table-dark">
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Apellido</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Edad</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for persona in oficina.personas.all %}
+    <p class="mb-2 text-muted">
+        Total de personas en esta oficina: {{ oficina.personas.count }}
+    </p>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead class="table-dark">
           <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ persona.apellido }}</td>
-            <td>{{ persona.nombre }}</td>
-            <td>{{ persona.edad }}</td>
-            <td>
-              <a href="{% url 'persona:detalle' persona.pk %}" class="btn btn-info btn-sm">Ver</a>
-              <a href="{% url 'persona:actualizar' persona.pk %}" class="btn btn-warning btn-sm">Modificar</a>
-              <a href="{% url 'persona:eliminar' persona.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
-            </td>
+            <th scope="col">#</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Acciones</th>
           </tr>
-        {% empty %}
-          <tr>
-            <td colspan="5" class="text-center text-muted">No hay personas en esta oficina.</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-
+        </thead>
+        <tbody>
+          {% for persona in oficina.personas.all %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ persona.apellido }}</td>
+              <td>{{ persona.nombre }}</td>
+              <td>{{ persona.edad }}</td>
+              <td>
+                <a href="{% url 'persona:detalle' persona.pk %}" class="btn btn-info btn-sm">Ver</a>
+                <a href="{% url 'persona:actualizar' persona.pk %}" class="btn btn-warning btn-sm">Modificar</a>
+                <a href="{% url 'persona:eliminar' persona.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="5" class="text-center text-muted">No hay personas en esta oficina.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
     <a href="{% url 'oficina:lista' %}" class="btn btn-outline-primary mt-3">Volver a la lista</a>
 </div>
 {% endblock content %}

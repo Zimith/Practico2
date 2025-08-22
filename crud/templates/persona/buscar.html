@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Resultado de la busqueda de Personas</h1>
-{% if personas %}
-<table class="table table-striped">
+<h1>Resultado de la búsqueda de Personas</h1>
+{% if page_obj.paginator.count %}
+<p class="mb-2 text-muted">
+    {{ page_obj.paginator.count }} personas en total.
+</p>
+<div class="table-responsive">
+  <table class="table table-striped">
     <thead class="table-dark">
         <tr>
             <th scope="col">#</th>
@@ -17,7 +21,7 @@
     <tbody>
         {% for persona in personas %}
             <tr>
-                <th scope="row">{{ forloop.counter }}</th>
+                <th scope="row">{{ forloop.counter0|add:page_obj.start_index }}</th>
                 <td>{{ persona.apellido }}</td>
                 <td>{{ persona.nombre }}</td>
                 <td>{{ persona.edad }}</td>
@@ -36,7 +40,8 @@
             </tr>
         {% endfor %}
     </tbody>
-</table>
+  </table>
+</div>
 <div class="pagination">
     {% include 'paginator.html' %}
 </div>

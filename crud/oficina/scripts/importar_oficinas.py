@@ -21,7 +21,7 @@ def run(*args):
                 nombre_corto = row.get('nombre_corto')
 
                 if not nombre or not nombre_corto:
-                    print("Error en la fila {row}. Falta un campo")
+                    print(f"Error en la fila {row}. Falta un campo")
                     continue
 
                 try:

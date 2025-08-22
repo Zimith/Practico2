@@ -1,38 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Resultado de la busqueda de Oficinas</h1>
-{% if oficinas %}
-<table class="table table-striped">
-    <thead class="table-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Nombre Corto</th>
-            <th scope="col">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for oficina in oficinas %}
-            <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ oficina.nombre }}</td>
-                <td>{{ oficina.nombre_corto|slice:":10" }}</td>
-                <td>
-                    <a href="{% url 'oficina:detalle' oficina.pk %}" class="btn btn-info btn-sm">Ver</a>
-                    <a href="{% url 'oficina:actualizar' oficina.pk %}" class="btn btn-warning btn-sm">Modificar</a>
-                    <a href="{% url 'oficina:eliminar' oficina.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<h1>Resultado de la búsqueda de Oficinas</h1>
+{% if page_obj.paginator.count %}
+<p class="mb-2 text-muted">
+    {{ page_obj.paginator.count }} oficinas en total.
+</p>
+<div class="table-responsive">
+  <table class="table table-striped">
+      <thead class="table-dark">
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Nombre Corto</th>
+              <th scope="col">Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for oficina in oficinas %}
+              <tr>
+                  <th scope="row">{{ forloop.counter0|add:page_obj.start_index }}</th>
+                  <td>{{ oficina.nombre }}</td>
+                  <td>{{ oficina.nombre_corto|slice:":10" }}</td>
+                  <td>
+                      <a href="{% url 'oficina:detalle' oficina.pk %}" class="btn btn-info btn-sm">Ver</a>
+                      <a href="{% url 'oficina:actualizar' oficina.pk %}" class="btn btn-warning btn-sm">Modificar</a>
+                      <a href="{% url 'oficina:eliminar' oficina.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                  </td>
+              </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
 <div class="pagination">
     {% include 'paginator.html' %}
 </div>
 <a href="{% url 'oficina:lista' %}" class="btn btn-outline-primary mt-3">Volver a la lista</a>
-
-
 {% else %}
     <div class="alert alert-warning">No se encontraron resultados.</div>
     <a href="{% url 'oficina:lista' %}" class="btn btn-outline-primary mt-3">Volver a la lista</a>  

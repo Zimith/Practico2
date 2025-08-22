@@ -5,40 +5,42 @@
 <p class="mb-2 text-muted">
     {{ page_obj.paginator.count }} personas en total.
 </p>
-<table class="table table-striped">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Apellido</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Edad</th>
-      <th scope="col">Oficina</th>
-      <th scope="col">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for persona in personas %}
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead class="table-dark">
       <tr>
-        <th scope="row">{{ forloop.counter0|add:page_obj.start_index }}</th>
-        <td>{{ persona.apellido }}</td>
-        <td>{{ persona.nombre }}</td>
-        <td>{{ persona.edad }}</td>
-        <td>
-            {% if persona.oficina %}
-                {{ persona.oficina.nombre_corto|slice:":10" }}
-            {% else %}
-                Sin Oficina
-            {% endif %}
-        </td>
-        <td>
-          <a href="{% url 'persona:detalle' persona.pk %}" class="btn btn-info btn-sm">Ver</a>
-          <a href="{% url 'persona:actualizar' persona.pk %}" class="btn btn-warning btn-sm">Modificar</a>
-          <a href="{% url 'persona:eliminar' persona.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
-        </td>
+        <th scope="col">#</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Oficina</th>
+        <th scope="col">Acciones</th>
       </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {% for persona in personas %}
+        <tr>
+          <th scope="row">{{ forloop.counter0|add:page_obj.start_index }}</th>
+          <td>{{ persona.apellido }}</td>
+          <td>{{ persona.nombre }}</td>
+          <td>{{ persona.edad }}</td>
+          <td>
+              {% if persona.oficina %}
+                  {{ persona.oficina.nombre_corto|slice:":10" }}
+              {% else %}
+                  Sin Oficina
+              {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'persona:detalle' persona.pk %}" class="btn btn-info btn-sm">Ver</a>
+            <a href="{% url 'persona:actualizar' persona.pk %}" class="btn btn-warning btn-sm">Modificar</a>
+            <a href="{% url 'persona:eliminar' persona.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 <div class="pagination">
   {% include 'paginator.html' %}
 </div>
