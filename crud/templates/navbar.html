@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">CRUD</a>
+    <a class="navbar-brand" href="{% url 'persona:lista' %}">CRUD</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,37 +8,35 @@
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-      <!-- LEFT: Dropdowns -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="personasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownPersonas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Personas
           </a>
-          <ul class="dropdown-menu" aria-labelledby="personasDropdown">
-            <li><a class="dropdown-item" href="{% url 'persona:lista' %}">Lista</a></li>
-            <li><a class="dropdown-item" href="{% url 'persona:crear' %}">Agregar</a></li>
+          <ul class="dropdown-menu" aria-labelledby="dropdownPersonas">
+            <li><a class="dropdown-item" href="{% url 'persona:lista' %}" title="Ver lista de personas">Lista</a></li>
+            <li><a class="dropdown-item" href="{% url 'persona:crear' %}" title="Agregar nueva persona">Agregar</a></li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="oficinasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownOficinas" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Oficinas
           </a>
-          <ul class="dropdown-menu" aria-labelledby="oficinasDropdown">
-            <li><a class="dropdown-item" href="{% url 'oficina:lista' %}">Lista</a></li>
-            <li><a class="dropdown-item" href="{% url 'oficina:crear' %}">Agregar</a></li>
+          <ul class="dropdown-menu" aria-labelledby="dropdownOficinas">
+            <li><a class="dropdown-item" href="{% url 'oficina:lista' %}" title="Ver lista de oficinas">Lista</a></li>
+            <li><a class="dropdown-item" href="{% url 'oficina:crear' %}" title="Agregar nueva oficina">Agregar</a></li>
           </ul>
         </li>
       </ul>
 
-      <!-- RIGHT: Search y Usuario -->
       <div class="d-flex align-items-center ms-auto">
         <form class="d-flex me-2" role="search" method="get" action="{% url 'persona:buscar' %}">
           <select class="form-select me-2" name="tipo" style="max-width: 120px;">
             <option value="persona" {% if request.GET.tipo == "persona" or not request.GET.tipo %}selected{% endif %}>Personas</option>
             <option value="oficina" {% if request.GET.tipo == "oficina" %}selected{% endif %}>Oficinas</option>
           </select>
-          <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" name="q" value="{{ request.GET.q|default_if_none:'' }}" />
+          <input class="form-control me-2" type="search" placeholder="Buscar personas u oficinas..." aria-label="Search" name="q" value="{{ request.GET.q|default_if_none:'' }}" />
           <button class="btn btn-outline-light" type="submit">Buscar</button>
         </form>
 
